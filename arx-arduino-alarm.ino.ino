@@ -1,31 +1,38 @@
-int redPin = 5;/* assigning the Arduino pin for red LED*/int greenPin = 4;/* assigning the Arduino pin for green LED*/
-int sensorPin = 6; /* assigning the Arduino pin for motion detection sensor*/
-int buzzPin = 3; /* assigning the Arduino pin for buzzer */
-int val = 0; /*assigning the variables for string the output of the sensor */
 
-void setup() {
-  /* assigning  pin mode for the LEDs and sensor */
-  pinMode(redPin, OUTPUT);
-  pinMode(greenPin, OUTPUT);
-  pinMode(sensorPin, INPUT);
-  pinMode(buzzPin, OUTPUT);
+/*
+const int pir1 = A0;
+const int pir2 = A1;
+const int pir3 = A2;
+bool arx_armed = false;
+bool arx_triggered = false;
+bool arx_tamper = false;
 
+void setup()
+{
   Serial.begin(9600);
-  digitalWrite(greenPin,HIGH); /* giving the LED a HIGH state */
+  pinMode(buzzer, OUTPUT);
+  pinMode(LED, OUTPUT);
+  pinMode(flame_sensor, INPUT);
 }
-void loop(){
-  val = digitalRead(sensorPin);  /* reading the output of the motion sensor*/
 
-  if (val == HIGH) /* if the value is HIGH then */
+void loop()
+{
+  flame_detected = digitalRead(flame_sensor);
+  if (flame_detected == 1)
   {
-    digitalWrite(redPin, HIGH);  /* turn on the RED led */
-    digitalWrite(greenPin,LOW);/* turn off the green led */
-    digitalWrite(buzzPin,HIGH);/* turn on the buzzer alarm */
+    Serial.println("Flame detected...! take action immediately.");
+    digitalWrite(buzzer, HIGH);
+    digitalWrite(LED, HIGH);
+    delay(200);
+    digitalWrite(LED, LOW);
+    delay(200);
   }
-    if (val == LOW)/* if the output of the sensor is low then */
-    {
-      digitalWrite(redPin, LOW); /* turn the red led off */
-      digitalWrite(greenPin,HIGH);/* turn on  the green led*/
-      digitalWrite(buzzPin,LOW);/* turn off the buzzer*/
-    }
+  else
+  {
+    Serial.println("No flame detected. stay cool");
+    digitalWrite(buzzer, LOW);
+    digitalWrite(LED, LOW);
+  }
+  delay(1000);
 }
+*/
